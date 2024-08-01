@@ -623,8 +623,6 @@ MonoBehaviour:
   crashAudio: {fileID: 8300000, guid: e7ee25a47d63b46cdaf65480d62b405c, type: 3}
   jumpForce: 500
   gravityModifier: 1
-  isOnGround: 0
-  isGameOver: 0
 --- !u!4 &819328390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b186f9485a0828b468f98fe846ae1a68, type: 3}
