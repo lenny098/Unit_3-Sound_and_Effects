@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
-    private PlayerController playerController;
-    // public Vector3 spawnPosition;
+    [SerializeField] GameObject obstaclePrefab;
+    PlayerController playerController;
 
-    public float startDelay;
-    public float repeatRate;
+    [SerializeField] float startDelay;
+    [SerializeField] float repeatRate;
 
     void SpawnObstacle()
     {

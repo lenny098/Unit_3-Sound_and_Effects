@@ -1,24 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator)), RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rigidbody;
-    private Animator animator;
-    private AudioSource audioSource;
+    Rigidbody rigidbody;
+    Animator animator;
+    AudioSource audioSource;
 
-    public ParticleSystem explosion;
-    public ParticleSystem dirt;
+    [SerializeField] ParticleSystem explosion;
+    [SerializeField] ParticleSystem dirt;
 
-    public AudioClip jumpAudio;
-    public AudioClip crashAudio;
+    [SerializeField] AudioClip jumpAudio;
+    [SerializeField] AudioClip crashAudio;
 
-    public float jumpForce;
-    public float gravityModifier;
+    [SerializeField] float jumpForce;
+    [SerializeField] float gravityModifier;
 
-    public bool isOnGround;
-    public bool isGameOver;
+    bool isOnGround;
+    public bool isGameOver { get; private set; }
 
     // Start is called before the first frame update
     void Start()
