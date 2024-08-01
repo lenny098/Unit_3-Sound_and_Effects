@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator)), RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     Rigidbody rigidbody;
     Animator animator;
     AudioSource audioSource;
@@ -18,6 +20,17 @@ public class PlayerController : MonoBehaviour
 
     bool isOnGround;
     public bool isGameOver { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

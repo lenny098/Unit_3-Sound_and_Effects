@@ -3,7 +3,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject obstaclePrefab;
-    PlayerController playerController;
 
     [SerializeField] float startDelay;
     [SerializeField] float repeatRate;
@@ -16,15 +15,13 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-
         InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerController.isGameOver && IsInvoking("SpawnObstacle"))
+        if (PlayerController.Instance.isGameOver && IsInvoking("SpawnObstacle"))
         {
             CancelInvoke("SpawnObstacle");
         }
