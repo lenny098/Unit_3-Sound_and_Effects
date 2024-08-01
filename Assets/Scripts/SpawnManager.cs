@@ -9,7 +9,8 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnObstacle()
     {
-        Instantiate(obstaclePrefab, gameObject.transform.position, obstaclePrefab.transform.rotation);
+        // Use the position of this Spawn Manager as obstacles' spawn position
+        Instantiate(obstaclePrefab, transform.position, obstaclePrefab.transform.rotation);
     }
 
     // Start is called before the first frame update
