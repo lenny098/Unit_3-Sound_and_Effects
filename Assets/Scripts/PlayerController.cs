@@ -42,6 +42,33 @@ public class PlayerController : MonoBehaviour
         Physics.gravity *= gravityModifier;
     }
 
+    void Jump()
+    {
+        rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        isOnGround = false;
+        dirt.Stop();
+
+        animator.SetTrigger("Jump_trig");
+        audioSource.PlayOneShot(jumpAudio);
+    }
+
+    void Land()
+    {
+        isOnGround = true;
+        dirt.Play();
+    }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        dirt.Stop();
+        animator.SetBool("Death_b", true);
+
+        explosion.Play();
+        audioSource.PlayOneShot(crashAudio);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,13 +76,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-            isOnGround = false;
-
-            animator.SetTrigger("Jump_trig");
-            dirt.Stop();
-            audioSource.PlayOneShot(jumpAudio);
+            Jump();
         }
     }
 
@@ -64,22 +85,11 @@ public class PlayerController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Ground":
-                isOnGround = true;
-
-                dirt.Play();
-
-                Debug.Log("On Ground");
+                Land();
 
                 break;
             case "Obstacle":
-                isGameOver = true;
-
-                animator.SetBool("Death_b", true);
-                dirt.Stop();
-                explosion.Play();
-                audioSource.PlayOneShot(crashAudio);
-
-                Debug.Log("Game Over!");
+                GameOver();
 
                 break;
             default:
